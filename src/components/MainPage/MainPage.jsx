@@ -6,7 +6,7 @@ import BarChart from '../BarChart/BarChart';
 import './MainPage.scss';
 
 const MainPage = () => {
-  const tes = ['Without sort', 'ABV asc', 'ABV desc'];
+  const sortValue = ['Without sort', 'ABV asc', 'ABV desc'];
   const navigate = useNavigate();
   const params = useParams();
   const [sortBy, setSortBy] = useState(params.sortBy);
@@ -63,11 +63,10 @@ const MainPage = () => {
   return (
     <div className='main-page'>
       <BarChart beerList={beerList} details={details}/>
-      {isDetails && <DetailsModal item={itemDetails} setIsDetails={setIsDetails}/>}
-      <div className='main-page-main'>
+      <div className='main-page-container'>
         <select onChange={(e) => changeSort(e.target.value)} className='main-page-sort' value={params.sortBy}>
           {
-            tes.map((item, index) => (<option key={`${item}-${index}`}>{item}</option>))
+            sortValue.map((item, index) => (<option key={`${item}-${index}`}>{item}</option>))
           }
         </select>
         <div className='main-table'>
@@ -88,6 +87,7 @@ const MainPage = () => {
           <button onClick={() => pagination('inc')}>Next</button>
         </div>
       </div>
+      {isDetails && <DetailsModal item={itemDetails} setIsDetails={setIsDetails}/>}
     </div>
   );
 }
