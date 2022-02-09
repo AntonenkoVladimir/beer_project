@@ -13,20 +13,20 @@ const BarChart = ({beerList, details}) => {
   };
 
   const data = [
-    ["Name", "ABV"],
+    ['Name', 'ABV'],
     ...newData()
   ];
 
   const options = {
-    title: "ABV bar chart",
-    hAxis: {title: "Name", viewWindow: {}},
-    vAxis: {title: "ABV", viewWindow: {min: 0, max: Math.max(...data.map(i => (i[1])).splice(1))}},
-    legend: "none"
+    title: 'ABV bar chart',
+    hAxis: {title: 'Name', viewWindow: {}},
+    vAxis: {title: 'ABV', viewWindow: {min: 0, max: Math.max(...data.map(i => (i[1])).splice(1))}},
+    legend: 'none'
   };
 
   const chartEvents = [
     {
-      eventName: "select",
+      eventName: 'select',
       callback({chartWrapper}) {
         const dataItem = data[chartWrapper.getChart().getSelection()[0].row + 1];
         const myItem = beerList.filter(a => (a.name === dataItem[0]))[0];
@@ -37,11 +37,11 @@ const BarChart = ({beerList, details}) => {
 
   return (
     <Chart
-      chartType="ColumnChart"
+      chartType='ColumnChart'
       data={data}
       options={options}
-      width="100%"
-      height="300px"
+      width='100%'
+      height='300px'
       legendToggle
       chartEvents={chartEvents}
     />

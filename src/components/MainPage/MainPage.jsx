@@ -1,8 +1,8 @@
-import {useParams, useNavigate} from "react-router-dom";
-import {useEffect, useState, useMemo} from "react";
-import {getBeer} from "../../services/services";
-import DetailsModal from "../Modals/DetailsModal";
-import BarChart from "../BarChart/BarChart";
+import {useParams, useNavigate} from 'react-router-dom';
+import {useEffect, useState, useMemo} from 'react';
+import {getBeer} from '../../services/services';
+import DetailsModal from '../Modals/DetailsModal';
+import BarChart from '../BarChart/BarChart';
 import './MainPage.scss';
 
 const MainPage = () => {
@@ -19,11 +19,11 @@ const MainPage = () => {
     setBeerList(beer);
   }, []);
 
-  const pagination = async (type) => {
+  const pagination = async (dir) => {
     const page = Number(params.page);
-    const newPage = type === '+' ? page + 1 : page - 1;
+    const newPage = dir === 'inc' ? page + 1 : page - 1;
     if (newPage !== 0) {
-      if (type === '+' && beerList.length < 28) {
+      if (dir === 'inc' && beerList.length < 28) {
       } else {
         const beer = await getBeer(newPage);
         navigate(`/main/${newPage}/${params.sortBy}`)
@@ -61,7 +61,7 @@ const MainPage = () => {
   }
 
   return (
-    <div className="MainPage">
+    <div className='main-page'>
       <BarChart beerList={beerList} details={details}/>
       {isDetails && <DetailsModal item={itemDetails} setIsDetails={setIsDetails}/>}
       <div className='main-page-main'>
@@ -84,8 +84,8 @@ const MainPage = () => {
           }
         </div>
         <div className='paggination-div'>
-          <button onClick={() => pagination('-')}>Previous</button>
-          <button onClick={() => pagination('+')}>Next</button>
+          <button onClick={() => pagination('desc')}>Previous</button>
+          <button onClick={() => pagination('inc')}>Next</button>
         </div>
       </div>
     </div>

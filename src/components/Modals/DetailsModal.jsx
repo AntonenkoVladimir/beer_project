@@ -2,7 +2,7 @@ import './DetailsModal.scss';
 
 const DetailsModal = ({item, setIsDetails}) => {
   return (
-    <div className="DetailsModal" onClick={() => setIsDetails(false)}>
+    <div className='details-modal' onClick={() => setIsDetails(false)}>
       <p className='details-modal-close' onClick={() => setIsDetails(false)}>Close</p>
       <div className='details-modal-main' onClick={(e) => e.stopPropagation()}>
         <div className='details-modal-main-left'>
@@ -14,7 +14,7 @@ const DetailsModal = ({item, setIsDetails}) => {
           <p>Brewer’s tips: {item.brewers_tips}</p>
         </div>
         <div className='details-modal-main-right'>
-          <img src={item.image_url} />
+          <img src={item.image_url}/>
         </div>
       </div>
     </div>
